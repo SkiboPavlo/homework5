@@ -1,6 +1,6 @@
 #
 class EventsController < ApplicationController
-  before_action :load_event, only: [:edit, :update, :destroy, :show]
+  before_action :load_event, only: [:edit, :update, :destroy, :show, :apply]
 
   def index
     @events = Event.all
@@ -14,9 +14,20 @@ class EventsController < ApplicationController
 
   def show; end
 
+  def apply
+    @event.users << current_user
+    if @event.save
+      redirect_to @event
+    else
+      flash[:errors] = @event.errors.messages
+      render :show
+    end
+  end
+
   def create
     @event = Event.new(event_params)
     if @event.save
+      @event.users << current_user if current_user.admin?
       redirect_to events_path
     else
       flash[:errors] = @event.errors.messages

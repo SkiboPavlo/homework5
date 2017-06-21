@@ -18,16 +18,20 @@
         </p>
 
         <p>
-          <strong>Comments:</strong>
-          <%= @event.comments %>
+          <strong>Comment:</strong>
+          <%= @event.comments.first.description %>
         </p>
 
         <p>
           <strong>User:</strong>
-          <%= @event.user_id %>
+          <%= @event.admin.first.email %>
         </p>
 
         <%= link_to 'Back', events_path, class: 'btn btn-default btn-sm' %>
+        <%= link_to 'Add Comment', new_event_comment_path(@event), class: 'btn btn-default btn-sm' %>
+        <% if current_user.attendee? %>
+          <%= link_to 'Apply', apply_event_path, method: :post, class: 'btn btn-default btn-sm' %>
+        <% end %>
       </div>
     </div>
   </div>
