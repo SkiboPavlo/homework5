@@ -26,7 +26,6 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @event.save
-      @event.users << current_user if current_user.admin?
       redirect_to events_path
     else
       flash[:errors] = @event.errors.messages
