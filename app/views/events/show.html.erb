@@ -19,12 +19,12 @@
 
         <p>
           <strong>Comment:</strong>
-          <%= @event.comments.first.description %>
+          <%= @event.comment %>
         </p>
 
         <p>
           <strong>User:</strong>
-          <%= @event.admin.first.email %>
+          <%= @event.admin %>
         </p>
 
         <%= link_to 'Back', events_path, class: 'btn btn-default btn-sm' %>

@@ -15,12 +15,11 @@ class EventsController < ApplicationController
   def show; end
 
   def apply
-    @event.users << current_user
-    if @event.save
-      redirect_to @event
+    if @event.users.include?(current_user)
+      redirect_to event_path
     else
-      flash[:errors] = @event.errors.messages
-      render :show
+      @event.users << current_user
+      @event.save
     end
   end
 

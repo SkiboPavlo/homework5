@@ -5,5 +5,10 @@ class Event < ApplicationRecord
 
   def admin
     User.where(role: 'admin')
+    users.map { |u| u.email}
+  end
+
+  def comment
+    comments.map { |c| c.description }
   end
 end
