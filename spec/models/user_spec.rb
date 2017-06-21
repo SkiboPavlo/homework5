@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe User do
+describe User, type: :model do
   let(:user) { User.create(email: 'test@test.com', role: 'attendee') }
 
   describe '#relations' do

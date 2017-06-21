@@ -1,6 +1,6 @@
 require 'rails_helper'
-
-describe Event do
+#
+describe Event, type: :model do
   let(:user_1) { User.create(email: 'test@test.com', password: '123456') }
   let(:user_2) { User.create(email: '123@test.com', password: 'attendee') }
   let(:com) { Comment.create(description: 'ocean_plaza') }

@@ -17,6 +17,7 @@ gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
+gem 'rails-controller-testing'
 
 group :production do
   gem 'pg'
