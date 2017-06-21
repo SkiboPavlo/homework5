@@ -4,8 +4,7 @@ class Event < ApplicationRecord
   has_many :comments
 
   def admin
-    User.where(role: 'admin')
-    users.map { |u| u.email}
+    users.map { |u| u.email }
   end
 
   def comment

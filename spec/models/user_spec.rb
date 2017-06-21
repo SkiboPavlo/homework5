@@ -1,22 +1,38 @@
 require 'rails_helper'
 
 describe User do
-  let(:user) { User.create(email: 'test@test.com', role: 'attendee', event_id: 1) }
+  let(:user) { User.create(email: 'test@test.com', role: 'attendee') }
 
-  describe 'relations' do
-    # it { is_expected.to have_and_belong_to_many(:events) }
-    it { should have_and_belong_to_many(:events) }
+  describe '#relations' do
+    it { is_expected.to have_and_belong_to_many(:events) }
   end
 
-  describe 'admin?' do
+  describe '#admin?' do
     context 'user role is eq to admin' do
       it 'return true' do
         user.role = 'admin'
         expect(user.admin?).to be true
       end
+    end
 
+    context 'user role is not eq to admin' do
       it 'return false' do
         expect(user.admin?).to be false
+      end
+    end
+  end
+
+  describe '#attendee?' do
+    context 'user role is eq to attendee' do
+      it 'return true' do
+        expect(user.attendee?).to be true
+      end
+    end
+
+    context 'user role is  not eq to attendee' do
+      it 'return false' do
+        user.role = 'admin'
+        expect(user.attendee?).to be false
       end
     end
   end
