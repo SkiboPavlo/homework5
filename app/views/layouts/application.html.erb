@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <% unless controller.devise_controller? %>
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href= "<%= root_url %>">Pivorak homework#5</a>
+          </div>
+
+          <div class="nav pull-right">
+            <% if user_signed_in? %>
+              Signed in as <%= current_user.email %>
+              <%= link_to "Profile", user_path(current_user), class: 'btn btn-default' %>
+              <%= link_to "Sign out", destroy_user_session_path, :method => :delete,
+                                                            class: 'btn btn-default' %>
+            <% else %>
+              <%= link_to new_user_registration_path do %>
+                <button class="btn btn-info">Sign Up</button>
+              <% end %>
+              or
+              <%= link_to new_user_session_path do %>
+                <button class="btn btn-info">Sign In</button>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </nav>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
+
